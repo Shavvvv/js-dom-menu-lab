@@ -1,3 +1,13 @@
+/**Task 3.0
+Copy the following data structure to the top of script.js: */
+
+// Menu data structure
+const menuLinks = [
+    {text: 'about', href: '/about'},
+    {text: 'catalog', href: '/catalog'},
+    {text: 'orders', href: '/orders'},
+    {text: 'account', href: '/account'},
+  ];
 
 
 
@@ -80,3 +90,40 @@ Add a class of flex-around to topMenuEl. */
 topMenuEl.classList.add('flex-around') 
 
 
+
+//         ////      task 3.0 at top of page
+
+
+
+/**  3.1
+ * Iterate over the entire menuLinks array and for each “link” object:
+
+Create an <a> element.
+
+
+Hint: Research the document.createElement method.
+
+On the new element, add an href attribute with its value set to the href property of the “link” object.
+
+Set the new element’s content to the value of the text property of the “link” object.
+
+Append the new element to the topMenuEl element.
+
+Hint: Research the node.appendChild method.
+
+ */
+
+menuLinks.forEach(function(link){
+
+    const newEl = document.createElement('a');
+
+    newEl.href= link.href;
+ 
+    newEl.innerText = link.text;
+    
+    topMenuEl.appendChild(newEl)
+
+
+
+
+})
