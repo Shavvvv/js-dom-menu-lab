@@ -149,9 +149,11 @@ menuLinks.forEach(function(link){
     topMenuEl.appendChild(newEl)
 
 
-
-
 })
+
+
+
+
 
 
 /** Task 4.0
@@ -206,3 +208,158 @@ variable named topMenuLinks.
 
 Declare a global showingSubMenu variable and initialize it
  to false; */
+
+
+
+
+ //let topMenuLinks=topMenuEl.innerText
+
+ const topMenuLinks = document.querySelectorAll('#top-menu a');
+ //console.log(topMenuLinks)
+
+let showingSubMenu=false;
+
+
+
+/** Task 5.2
+Attach a delegated 'click' event listener to topMenuEl.
+
+The first line of code of the event listener function should call the event object’s preventDefault() method.
+
+The second line of code function should immediately return if the element clicked was not an <a> element.
+
+👀 Hint: DOM elements have a tagName property.
+
+console.log the content of the <a> to verify the handler is working.*/
+
+
+//topMenuEl.addEventListener('click', function (event){
+
+
+
+
+topMenuEl.addEventListener('click',function (evt) {
+    evt.preventDefault()
+
+
+  
+
+let val =evt.target
+
+if (val.tagName!=='A'){
+return;
+}
+
+console.log(val.textContent)
+
+
+
+
+/*Task 5.3
+This feature “deselects” the menu item if it’s clicked when it’s 
+currently active, resulting in the sub-menu sliding up as well.
+
+Next in the event listener, if the clicked <a> link has a class of active:
+
+Remove the active class from the clicked <a> element.
+Set the showingSubMenu to false.
+Set the CSS top property of subMenuEl to 0.
+return; from the event listener function.*/
+
+
+
+//let activeCheck = document.getElementById('active')
+
+if(val.tagName==='A'&& val.classList.contains('active')){
+
+
+
+    val.classList.remove('active')
+
+    showingSubMenu=false
+
+    subMenuEl.style.top='0'
+
+
+return;
+
+
+}
+// Task 5.4
+
+topMenuLinks.forEach((element) =>
+
+
+element.classList.remove('active')
+
+)
+
+ 
+
+//  Task 5.5
+
+val.classList.add('active')   
+//console.log(val)
+
+
+
+
+// task 5.6
+
+let LinkData=menuLinks.find(function(linkObj){
+    return linkObj.text===val.textContent})
+
+showingSubMenu='sublinks' in LinkData;
+
+//5.7
+
+
+console.log(showingSubMenu)
+
+if(showingSubMenu){
+
+buildSubMenu(LinkData.subLinks)
+subMenuEl.style.top='100';
+
+}else {
+    subMenuEl.style.top='0' 
+
+mainEl.innerHTML='<h1>about</h1>'
+}
+
+
+
+}
+
+)
+//5.8
+
+
+function buildSubMenu(subLinks){
+
+subMenuEl.replaceChildren()
+
+subLinks.forEach(function(data){
+
+    const newEl = document.createElement('a');
+
+    newEl.href= data.href;
+
+    link.innerText = data.text;
+    
+    subMenuEl.appendChild(newEl)
+})
+
+}
+
+
+
+
+
+
+
+
+   
+
+
+ 
