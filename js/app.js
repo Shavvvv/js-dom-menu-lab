@@ -239,12 +239,12 @@ console.log the content of the <a> to verify the handler is working.*/
 
 
 topMenuEl.addEventListener('click',function (evt) {
-    evt.preventDefault()
+    evt.preventDefault();
 
 
   
 
-let val =evt.target
+const val =evt.target
 
 if (val.tagName!=='A'){
 return;
@@ -306,10 +306,10 @@ val.classList.add('active')
 
 // task 5.6
 
-let LinkData=menuLinks.find(function(linkObj){
+let linkData=menuLinks.find(function(linkObj){
     return linkObj.text===val.textContent})
 
-showingSubMenu='sublinks' in LinkData;
+showingSubMenu='sublinks' in linkData;
 
 //5.7
 
@@ -318,7 +318,7 @@ console.log(showingSubMenu)
 
 if(showingSubMenu){
 
-buildSubMenu(LinkData.subLinks)
+buildSubMenu(linkData.subLinks)
 subMenuEl.style.top='100';
 
 }else {
@@ -337,22 +337,60 @@ mainEl.innerHTML='<h1>about</h1>'
 
 function buildSubMenu(subLinks){
 
-subMenuEl.replaceChildren()
+subMenuEl.innerHTML=''
 
-subLinks.forEach(function(data){
+subLinks.forEach(function(link){
 
-    const newEl = document.createElement('a');
+    const linkEl = document.createElement('a');
 
-    newEl.href= data.href;
+    linkEl.setAttribute('href', link.href);
 
-    link.innerText = data.text;
+    linkEl.textContent = link.text;
     
-    subMenuEl.appendChild(newEl)
+    subMenuEl.appendChild(linkEl)
 })
 
 }
 
 
+
+
+
+
+subMenuEl.addEventListener('click',function(evt){
+
+evt.preventDefault();
+
+const val=evt.target;
+
+if (val.tagName!=='A'){
+  return;
+  }
+  
+  console.log(val.textContent)
+
+
+//task 6.1
+
+showingSubMenu=false;
+subMenuEl.style.top='0'
+
+// task 6.2
+
+topMenuLinks.forEach((element) =>
+
+
+element.classList.remove('active')
+
+)
+
+// Task 6.3
+
+mainEl.innerHTML= `<h1> ${link.textContent}</h1>`
+
+
+
+})
 
 
 
