@@ -42,9 +42,7 @@
     background-color: var(--sub-menu-bg);
   }
 
-
-
-
+  /* 3. Add the following CSS to the bottom of style.css:*/
   header, #top-menu {
     position: relative;
   }
